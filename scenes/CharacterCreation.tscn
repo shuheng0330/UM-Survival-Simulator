@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://cqy0fhkggv2rd"]
+
+[ext_resource type="Script" uid="uid://bo6g0gb12kp7w" path="res://scripts/character_creation.gd" id="1_r13d2"]
+
+[node name="CharacterCreation" type="Control" unique_id=2106976976]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r13d2")
+
+[node name="FormPanel" type="Panel" parent="." unique_id=2083596948]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 87.0
+offset_right = 848.0
+offset_bottom = 537.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FormPanel" unique_id=2123958842]
+layout_mode = 0
+offset_right = 595.0
+offset_bottom = 448.0
+
+[node name="TitleLabel" type="Label" parent="FormPanel/VBoxContainer" unique_id=41177938]
+layout_mode = 2
+text = "Create Your UM Student"
+
+[node name="NameInput" type="LineEdit" parent="FormPanel/VBoxContainer" unique_id=604154123]
+layout_mode = 2
+placeholder_text = "Enter your name"
+
+[node name="AgeLabel" type="Label" parent="FormPanel/VBoxContainer" unique_id=1087552526]
+layout_mode = 2
+text = "Age"
+
+[node name="AgeInput" type="SpinBox" parent="FormPanel/VBoxContainer" unique_id=2027032916]
+layout_mode = 2
+min_value = 17.0
+max_value = 30.0
+value = 21.0
+
+[node name="MajorLabel" type="Label" parent="FormPanel/VBoxContainer" unique_id=566213944]
+layout_mode = 2
+text = "Major"
+
+[node name="MajorOption" type="OptionButton" parent="FormPanel/VBoxContainer" unique_id=859842477]
+layout_mode = 2
+item_count = 5
+popup/item_0/text = "Software Engineering"
+popup/item_0/id = 0
+popup/item_1/text = "Medicine"
+popup/item_1/id = 1
+popup/item_2/text = "Business and Economics"
+popup/item_2/id = 2
+popup/item_3/text = "Law"
+popup/item_3/id = 3
+popup/item_4/text = "Education"
+popup/item_4/id = 4
+
+[node name="KolejLabel" type="Label" parent="FormPanel/VBoxContainer" unique_id=1001959701]
+layout_mode = 2
+text = "Kolej Kediaman"
+
+[node name="KolejOption" type="OptionButton" parent="FormPanel/VBoxContainer" unique_id=728851392]
+layout_mode = 2
+item_count = 5
+popup/item_0/text = "KK1"
+popup/item_0/id = 0
+popup/item_1/text = "KK2"
+popup/item_1/id = 1
+popup/item_2/text = "KK7"
+popup/item_2/id = 2
+popup/item_3/text = "KK8"
+popup/item_3/id = 3
+popup/item_4/text = "KK12"
+popup/item_4/id = 4
+
+[node name="StartButton" type="Button" parent="FormPanel/VBoxContainer" unique_id=234941851]
+layout_mode = 2
+text = "Start Semester"
+
+[connection signal="pressed" from="FormPanel/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]

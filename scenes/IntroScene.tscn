@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://c5w2knjav4e4"]
+
+[ext_resource type="Script" uid="uid://copcd2wa2qov1" path="res://scripts/intro_scene.gd" id="1_g6t57"]
+
+[node name="IntroScene" type="Control" unique_id=1028954977]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g6t57")
+
+[node name="IntroPanel" type="Panel" parent="." unique_id=1578420337]
+layout_mode = 0
+offset_left = 290.0
+offset_top = 110.0
+offset_right = 890.0
+offset_bottom = 560.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="IntroPanel" unique_id=1616755675]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 100.0
+offset_right = 216.0
+offset_bottom = 158.0
+
+[node name="IntroLabel" type="Label" parent="IntroPanel/VBoxContainer" unique_id=955795585]
+layout_mode = 2
+
+[node name="BeginButton" type="Button" parent="IntroPanel/VBoxContainer" unique_id=2088576985]
+layout_mode = 2
+text = "Begin Journey"
+
+[connection signal="pressed" from="IntroPanel/VBoxContainer/BeginButton" to="." method="_on_begin_button_pressed"]
