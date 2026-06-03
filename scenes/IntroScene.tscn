@@ -1,6 +1,51 @@
 [gd_scene format=3 uid="uid://c5w2knjav4e4"]
 
 [ext_resource type="Script" uid="uid://copcd2wa2qov1" path="res://scripts/intro_scene.gd" id="1_g6t57"]
+[ext_resource type="Texture2D" path="res://assets/icons/IntroScreen.png" id="2_introscreen"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+content_margin_left = 28.0
+content_margin_top = 28.0
+content_margin_right = 28.0
+content_margin_bottom = 28.0
+bg_color = Color(0.08, 0.08, 0.16, 0.88)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(0.12, 0.07, 0.03, 0.85)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(0.32, 0.19, 0.08, 0.92)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_pressed"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(0.07, 0.04, 0.01, 0.92)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="IntroScene" type="Control" unique_id=1028954977]
 layout_mode = 3
@@ -11,25 +56,73 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_g6t57")
 
+[node name="BackgroundTexture" type="TextureRect" parent="." unique_id=101010101]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_introscreen")
+expand_mode = 1
+stretch_mode = 6
+
 [node name="IntroPanel" type="Panel" parent="." unique_id=1578420337]
-layout_mode = 0
-offset_left = 290.0
-offset_top = 110.0
-offset_right = 890.0
-offset_bottom = 560.0
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -270.0
+offset_top = -175.0
+offset_right = 270.0
+offset_bottom = 175.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="IntroPanel" unique_id=1616755675]
-layout_mode = 0
-offset_left = 100.0
-offset_top = 100.0
-offset_right = 216.0
-offset_bottom = 158.0
+layout_mode = 1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = 28.0
+offset_right = -28.0
+offset_bottom = -28.0
+theme_override_constants/separation = 14
+
+[node name="WelcomeTitle" type="Label" parent="IntroPanel/VBoxContainer" unique_id=202020202]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.79, 0.58, 0.16, 1.0)
+theme_override_font_sizes/font_size = 26
+text = "Welcome!"
+
+[node name="Divider" type="HSeparator" parent="IntroPanel/VBoxContainer" unique_id=303030303]
+layout_mode = 2
+
+[node name="DividerSpacer" type="Control" parent="IntroPanel/VBoxContainer" unique_id=404040404]
+custom_minimum_size = Vector2(0, 4)
+layout_mode = 2
 
 [node name="IntroLabel" type="Label" parent="IntroPanel/VBoxContainer" unique_id=955795585]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.88, 0.93, 1.0)
+theme_override_font_sizes/font_size = 15
+autowrap_mode = 3
+
+[node name="ButtonSpacer" type="Control" parent="IntroPanel/VBoxContainer" unique_id=505050505]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+size_flags_vertical = 3
 
 [node name="BeginButton" type="Button" parent="IntroPanel/VBoxContainer" unique_id=2088576985]
+custom_minimum_size = Vector2(0, 48)
 layout_mode = 2
+theme_override_colors/font_color = Color(1.0, 1.0, 1.0, 1.0)
+theme_override_colors/font_hover_color = Color(1.0, 0.92, 0.75, 1.0)
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
 text = "Begin Journey"
 
 [connection signal="pressed" from="IntroPanel/VBoxContainer/BeginButton" to="." method="_on_begin_button_pressed"]
