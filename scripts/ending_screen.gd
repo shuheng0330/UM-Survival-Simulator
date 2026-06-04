@@ -34,9 +34,12 @@ func _ready():
 		"Exam:    %d/5" % GameData.exam_score
 	)
 	GameData.delete_save()
+	AudioManager.play_sfx("ending")
 
 func _on_play_again_button_pressed():
+	AudioManager.play_sfx("btn_click")
 	get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
 
 func _on_quit_button_pressed():
+	AudioManager.play_sfx("btn_click")
 	get_tree().quit()

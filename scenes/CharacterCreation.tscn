@@ -107,9 +107,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -260.0
-offset_top = -265.0
+offset_top = -305.0
 offset_right = 260.0
-offset_bottom = 265.0
+offset_bottom = 305.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="FormPanel" unique_id=2123958842]
@@ -149,6 +149,11 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_input")
 theme_override_styles/focus = SubResource("StyleBoxFlat_input_focus")
 placeholder_text = "Enter your name"
 
+[node name="NameError" type="Label" parent="FormPanel/VBoxContainer" unique_id=711711711]
+visible = false
+layout_mode = 2
+text = "* Name cannot be empty"
+
 [node name="AgeLabel" type="Label" parent="FormPanel/VBoxContainer" unique_id=1087552526]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.78, 0.78, 0.85, 1)
@@ -187,6 +192,11 @@ popup/item_3/id = 3
 popup/item_4/text = "Education"
 popup/item_4/id = 4
 
+[node name="MajorError" type="Label" parent="FormPanel/VBoxContainer" unique_id=712712712]
+visible = false
+layout_mode = 2
+text = "* Please select a Major"
+
 [node name="KolejLabel" type="Label" parent="FormPanel/VBoxContainer" unique_id=1001959701]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.78, 0.78, 0.85, 1)
@@ -211,6 +221,11 @@ popup/item_3/text = "KK8"
 popup/item_3/id = 3
 popup/item_4/text = "KK12"
 popup/item_4/id = 4
+
+[node name="KolejError" type="Label" parent="FormPanel/VBoxContainer" unique_id=713713713]
+visible = false
+layout_mode = 2
+text = "* Please select a Kolej Kediaman"
 
 [node name="Spacer2" type="Control" parent="FormPanel/VBoxContainer" unique_id=444444444]
 custom_minimum_size = Vector2(0, 6)

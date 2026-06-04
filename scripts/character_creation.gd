@@ -3,6 +3,11 @@ extends Control
 func _ready():
 	_style_popup($FormPanel/VBoxContainer/MajorOption.get_popup())
 	_style_popup($FormPanel/VBoxContainer/KolejOption.get_popup())
+	for err in [$FormPanel/VBoxContainer/NameError,
+				$FormPanel/VBoxContainer/MajorError,
+				$FormPanel/VBoxContainer/KolejError]:
+		err.add_theme_color_override("font_color", Color(1.0, 0.35, 0.35, 1.0))
+		err.add_theme_font_size_override("font_size", 12)
 
 func _style_popup(popup: PopupMenu) -> void:
 	var panel_style = StyleBoxFlat.new()
@@ -41,7 +46,30 @@ func _style_popup(popup: PopupMenu) -> void:
 	popup.add_theme_constant_override("item_end_padding", 10)
 
 func _on_start_button_pressed():
-	GameData.player_name = $FormPanel/VBoxContainer/NameInput.text
+	var valid = true
+
+	if $FormPanel/VBoxContainer/NameInput.text.strip_edges().is_empty():
+		$FormPanel/VBoxContainer/NameError.visible = true
+		valid = false
+	else:
+		$FormPanel/VBoxContainer/NameError.visible = false
+
+	if $FormPanel/VBoxContainer/MajorOption.selected == -1:
+		$FormPanel/VBoxContainer/MajorError.visible = true
+		valid = false
+	else:
+		$FormPanel/VBoxContainer/MajorError.visible = false
+
+	if $FormPanel/VBoxContainer/KolejOption.selected == -1:
+		$FormPanel/VBoxContainer/KolejError.visible = true
+		valid = false
+	else:
+		$FormPanel/VBoxContainer/KolejError.visible = false
+
+	if not valid:
+		return
+
+	GameData.player_name = $FormPanel/VBoxContainer/NameInput.text.strip_edges()
 	GameData.age = int($FormPanel/VBoxContainer/AgeInput.value)
 	GameData.major = $FormPanel/VBoxContainer/MajorOption.get_item_text(
 		$FormPanel/VBoxContainer/MajorOption.selected
@@ -49,4 +77,5 @@ func _on_start_button_pressed():
 	GameData.kolej = $FormPanel/VBoxContainer/KolejOption.get_item_text(
 		$FormPanel/VBoxContainer/KolejOption.selected
 	)
+	AudioManager.play_sfx("btn_click")
 	get_tree().change_scene_to_file("res://scenes/IntroScene.tscn")

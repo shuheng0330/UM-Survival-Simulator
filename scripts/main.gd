@@ -54,6 +54,8 @@ func update_stats():
 		"💰 Money:  RM%d\n" % money + \
 		"👥 Social: %d" % social
 	$UI/SemProgressBar.offset_right = (float(week) / 14.0) * 1152.0
+	if stress >= 80 or energy <= 20:
+		AudioManager.play_sfx("stat_warning")
 	check_game_over()
 	
 func trigger_random_event():
@@ -72,6 +74,7 @@ func clamp_stats():
 
 func show_random_event():
 	var event_id = randi_range(1, 10)
+	var good_events = [2, 6, 8, 10]
 
 	match event_id:
 		1:
@@ -111,7 +114,12 @@ func show_random_event():
 			gpa += 0.1
 			social += 5
 			show_message("Random Event:\nA classmate shared excellent revision notes.\nGPA +0.1, Social +5")
-			
+
+	if event_id in good_events:
+		AudioManager.play_sfx("event_good")
+	else:
+		AudioManager.play_sfx("event_bad")
+
 func show_message(message):
 	active_event = ""
 	$UI/EventPanel.visible = true
@@ -253,18 +261,22 @@ func show_ending():
 		
 func check_game_over():
 	if stress >= 100:
+		AudioManager.play_sfx("game_over")
 		show_message("Game Over:\nYour stress reached a dangerous level.\nYou need better balance next semester.")
 		return true
 
 	if energy <= 0:
+		AudioManager.play_sfx("game_over")
 		show_message("Game Over:\nYou are too exhausted to continue the semester.")
 		return true
 
 	if money <= -50:
+		AudioManager.play_sfx("game_over")
 		show_message("Game Over:\nYou ran into serious financial trouble.")
 		return true
 
 	if gpa <= 2.0:
+		AudioManager.play_sfx("game_over")
 		show_message("Game Over:\nYour academic performance dropped too low.")
 		return true
 
@@ -549,6 +561,7 @@ func setup_faculty_event():
 
 func _on_faculty_area_body_entered(body):
 	if body.name == "Player" and not faculty_completed:
+		AudioManager.play_sfx("area_enter")
 		setup_faculty_event()
 
 func _on_faculty_area_body_exited(body):
@@ -572,6 +585,7 @@ func _on_start_early_button_pressed():
 		GameData.save_club_completed = club_completed
 		GameData.save_sports_visit_count = sports_visit_count
 		GameData.save_game()
+		AudioManager.play_sfx("save")
 		active_event = ""
 		get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
 		return
@@ -614,6 +628,7 @@ func _on_start_early_button_pressed():
 		return
 
 	if active_event == "exam":
+		AudioManager.play_sfx("exam_correct")
 		exam_score += 1
 		exam_question_index += 1
 		if exam_question_index >= 5:
@@ -747,6 +762,7 @@ func _on_do_later_button_pressed():
 		return
 
 	if active_event == "exam":
+		AudioManager.play_sfx("exam_wrong")
 		exam_question_index += 1
 		if exam_question_index >= 5:
 			apply_exam_gpa()
@@ -829,9 +845,11 @@ func _on_do_later_button_pressed():
 		update_stats()
 
 func _on_next_week_button_pressed():
+	AudioManager.play_sfx("week_next")
 	next_week()
 
 func _on_ok_button_pressed():
+	AudioManager.play_sfx("btn_click")
 	$UI/EventPanel.visible = false
 
 func show_exit_prompt():
@@ -847,6 +865,7 @@ func show_exit_prompt():
 	$UI/EventPanel.visible = true
 
 func _on_exit_button_pressed():
+	AudioManager.play_sfx("btn_click")
 	show_exit_prompt()
 
 func _on_dpad_up_button_down():    Input.action_press("move_up")
@@ -957,6 +976,7 @@ func _style_btn(btn: Button, normal: Color, hover: Color, pressed: Color) -> voi
 
 func _on_library_area_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and not library_completed:
+		AudioManager.play_sfx("area_enter")
 		setup_library_event() # Replace with function body.
 
 
@@ -968,6 +988,7 @@ func _on_library_area_body_exited(body: Node2D) -> void:
 
 func _on_kolej_area_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and not kolej_completed:
+		AudioManager.play_sfx("area_enter")
 		setup_kolej_event() # Replace with function body.
 
 
@@ -979,6 +1000,7 @@ func _on_kolej_area_body_exited(body: Node2D) -> void:
 
 func _on_cafeteria_area_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and not cafeteria_completed:
+		AudioManager.play_sfx("area_enter")
 		setup_cafeteria_event() # Replace with function body.
 
 
@@ -990,6 +1012,7 @@ func _on_cafeteria_area_body_exited(body: Node2D) -> void:
 
 func _on_sports_area_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and not sports_completed:
+		AudioManager.play_sfx("area_enter")
 		setup_sports_event() # Replace with function body.
 
 
@@ -1001,6 +1024,7 @@ func _on_sports_area_body_exited(body: Node2D) -> void:
 
 func _on_club_area_body_entered(body: Node2D) -> void:
 	if body.name == "Player" and not club_completed:
+		AudioManager.play_sfx("area_enter")
 		setup_club_event() # Replace with function body.
 
 
