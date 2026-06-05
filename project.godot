@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="UM-Semester-Quest"
-run/main_scene="uid://cqy0fhkggv2rd"
+run/main_scene="res://scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 GameData="*uid://rt6p6ueps175"
+AudioManager="*res://scripts/audio_manager.gd"
 
 [display]
 
@@ -56,3 +57,4 @@ move_right={
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
