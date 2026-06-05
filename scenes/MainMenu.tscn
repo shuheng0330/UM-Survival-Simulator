@@ -56,15 +56,31 @@ texture = ExtResource("2_0ykhv")
 expand_mode = 1
 stretch_mode = 6
 
+[node name="CreditsLabel" type="Label" parent="." unique_id=991991991]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -240.0
+offset_top = 225.0
+offset_right = 240.0
+offset_bottom = 278.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.3935807, 0.15711641, 0.12350928, 1)
+theme_override_font_sizes/font_size = 13
+text = "Developed by
+Thong Shu Heng A/L Thong Keow  |  23004933"
+horizontal_alignment = 1
+
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=330356638]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -120.0
-offset_top = 280.0
+offset_top = 300.0
 offset_right = 120.0
-offset_bottom = 270.0
+offset_bottom = 290.0
 grow_horizontal = 2
 theme_override_constants/separation = 15
 

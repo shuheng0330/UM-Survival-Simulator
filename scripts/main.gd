@@ -53,7 +53,7 @@ func update_stats():
 		"⚡ Energy: %d\n" % energy + \
 		"💰 Money:  RM%d\n" % money + \
 		"👥 Social: %d" % social
-	$UI/SemProgressBar.offset_right = (float(week) / 14.0) * 1152.0
+	$UI/SemProgressBar.offset_right = (float(week) / 14.0) * get_viewport().get_visible_rect().size.x
 	if stress >= 80 or energy <= 20:
 		AudioManager.play_sfx("stat_warning")
 	check_game_over()
@@ -263,21 +263,25 @@ func check_game_over():
 	if stress >= 100:
 		AudioManager.play_sfx("game_over")
 		show_message("Game Over:\nYour stress reached a dangerous level.\nYou need better balance next semester.")
+		active_event = "game_over"
 		return true
 
 	if energy <= 0:
 		AudioManager.play_sfx("game_over")
 		show_message("Game Over:\nYou are too exhausted to continue the semester.")
+		active_event = "game_over"
 		return true
 
 	if money <= -50:
 		AudioManager.play_sfx("game_over")
 		show_message("Game Over:\nYou ran into serious financial trouble.")
+		active_event = "game_over"
 		return true
 
 	if gpa <= 2.0:
 		AudioManager.play_sfx("game_over")
 		show_message("Game Over:\nYour academic performance dropped too low.")
+		active_event = "game_over"
 		return true
 
 	return false
@@ -850,6 +854,10 @@ func _on_next_week_button_pressed():
 
 func _on_ok_button_pressed():
 	AudioManager.play_sfx("btn_click")
+	if active_event == "game_over":
+		GameData.delete_save()
+		get_tree().change_scene_to_file("res://scenes/MainMenu.tscn")
+		return
 	$UI/EventPanel.visible = false
 
 func show_exit_prompt():
