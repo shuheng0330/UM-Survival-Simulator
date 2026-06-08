@@ -1,0 +1,163 @@
+[gd_scene format=3 uid="uid://dwda3m6tglra3"]
+
+[ext_resource type="Script" path="res://scripts/how_to_play.gd" id="1_howplay"]
+[ext_resource type="Texture2D" uid="uid://d3y457550k2ku" path="res://assets/icons/MainMenu.png" id="2_bg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.08, 0.08, 0.16, 0.9)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_normal"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(0.12, 0.07, 0.03, 0.85)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_hover"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(0.32, 0.19, 0.08, 0.92)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_btn_pressed"]
+content_margin_left = 20.0
+content_margin_top = 12.0
+content_margin_right = 20.0
+content_margin_bottom = 12.0
+bg_color = Color(0.07, 0.04, 0.01, 0.92)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="HowToPlay" type="Control" unique_id=100000001]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_howplay")
+
+[node name="BackgroundTexture" type="TextureRect" parent="." unique_id=100000002]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="MainPanel" type="Panel" parent="." unique_id=100000003]
+layout_mode = 1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -280.0
+offset_top = -260.0
+offset_right = 280.0
+offset_bottom = 260.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="PanelContent" type="VBoxContainer" parent="MainPanel" unique_id=100000004]
+layout_mode = 1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = 20.0
+offset_right = -20.0
+offset_bottom = -20.0
+theme_override_constants/separation = 10
+
+[node name="TitleLabel" type="Label" parent="MainPanel/PanelContent" unique_id=100000005]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.79, 0.58, 0.16, 1.0)
+theme_override_font_sizes/font_size = 24
+text = "How to Play"
+horizontal_alignment = 1
+
+[node name="Divider" type="HSeparator" parent="MainPanel/PanelContent" unique_id=100000006]
+layout_mode = 2
+
+[node name="RulesScroll" type="ScrollContainer" parent="MainPanel/PanelContent" unique_id=100000007]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RulesLabel" type="Label" parent="MainPanel/PanelContent/RulesScroll" unique_id=100000008]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.88, 0.88, 0.93, 1.0)
+theme_override_font_sizes/font_size = 13
+size_flags_horizontal = 3
+autowrap_mode = 3
+text = "OBJECTIVE
+Survive 14 weeks of university life at UM and pass the final exam!
+
+HOW TO PLAY
+Each week, walk around campus and enter buildings to interact with them.
+Once you are done, click \"Next Week\" to advance to the next week.
+Random events may occur each week — stay prepared!
+
+YOUR STATS
+GPA        Academic score. Must stay above 2.0.
+Stress     Pressure level (0-100). Hits 100 = Game Over!
+Energy     Stamina (0-100). Drops to 0 = Game Over!
+Money      Budget in RM. Goes below -RM50 = Game Over!
+Social     Friendships and connections.
+
+CAMPUS LOCATIONS
+Faculty          Attend class.         GPA up, Energy down.
+Library          Study quietly.        GPA up, slight Stress up.
+Cafeteria        Eat a meal.           Energy up, Money down.
+Sports Centre    Exercise.             Stress down, Social up.
+Club Room        Club activity.        Social up, small GPA drop.
+Kolej Kediaman   Rest in your room.    Energy up, Stress down.
+
+ENDINGS (7 TYPES)
+Gym Freak            Visit Sports Centre 8 or more times
+Campus Celebrity     Social > 90
+Millionaire Student  Money > RM 150
+Dean List            GPA >= 3.7 and Stress <= 50
+Burnout              Stress >= 80 at semester end
+Academic Probation   GPA < 2.0 at semester end
+Balanced Student     Survive without hitting any extreme
+
+TIPS
+- Visit Faculty every week to keep your GPA healthy.
+- Use Sports Centre and Cafeteria to manage Stress and Energy.
+- Keep all stats balanced for the best ending!"
+
+[node name="BackButton" type="Button" parent="MainPanel/PanelContent" unique_id=100000009]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 2
+theme_override_colors/font_color = Color(1.0, 1.0, 1.0, 1.0)
+theme_override_colors/font_hover_color = Color(1.0, 0.92, 0.75, 1.0)
+theme_override_styles/normal = SubResource("StyleBoxFlat_btn_normal")
+theme_override_styles/hover = SubResource("StyleBoxFlat_btn_hover")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_btn_pressed")
+text = "Back to Menu"
+
+[connection signal="pressed" from="MainPanel/PanelContent/BackButton" to="." method="_on_back_button_pressed"]

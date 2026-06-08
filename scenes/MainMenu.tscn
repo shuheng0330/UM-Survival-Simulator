@@ -94,6 +94,16 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
 theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
 text = "Play"
 
+[node name="HowToPlayButton" type="Button" parent="VBoxContainer" unique_id=847261905]
+custom_minimum_size = Vector2(220, 45)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 0.92, 0.75, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_normal")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_pressed")
+theme_override_styles/hover = SubResource("StyleBoxFlat_hover")
+text = "How to Play"
+
 [node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=1203046565]
 custom_minimum_size = Vector2(220, 45)
 layout_mode = 2
@@ -116,5 +126,6 @@ disabled = true
 text = "Load Progress"
 
 [connection signal="pressed" from="VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HowToPlayButton" to="." method="_on_how_to_play_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/LoadButton" to="." method="_on_load_button_pressed"]

@@ -8,6 +8,10 @@ func _on_play_button_pressed():
 	AudioManager.play_sfx("btn_click")
 	get_tree().change_scene_to_file("res://scenes/CharacterCreation.tscn")
 
+func _on_how_to_play_button_pressed():
+	AudioManager.play_sfx("btn_click")
+	get_tree().change_scene_to_file("res://scenes/HowToPlay.tscn")
+
 func _on_load_button_pressed():
 	AudioManager.play_sfx("btn_click")
 	GameData.load_game()
